@@ -1,4 +1,4 @@
-CFLAGS := -O2 -Wall -ggdb
+CFLAGS := 
 
 
 test_kasumi: kasumi_test.c kasumi.o

@@ -44,14 +44,15 @@ int main(void)
     for (i = 0; i < 8; i++)
         printf("%04x ", KIi3[i]);
     printf("\n");
-    */
-    //printf("%s\n", text);
+    
+    //printf("%s\n", text);*/
     Kasumi(text);
 
-	}
+}
+	
     for (i = 0; i < 2; i++)
         printf("%02x", text[i]);
     printf("\n");
-
+    i=0;
     return 0;
 }

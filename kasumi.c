@@ -2,23 +2,13 @@
 #include "kasumi.h"
 /*--------- 16 bit rotate left ------------------------------------------*/
 #define ROL16(a,b) (u16)((a<<b)|(a>>(16-b)))
-/*------- unions: used to remove "endian" issues ------------------------*/
-typedef union {
-    u32 b32;
-    u16 b16[2];
-    u8 b8[4];
-} DWORD;
-typedef union {
-    u16 b16;
-    u8 b8[2];
-} WORD;
 /*-------- globals: The subkey arrays -----------------------------------*/
-static u16 KLi1[8], KLi2[8];
+/*static u16 KLi1[8], KLi2[8];
 static u16 KOi1[8], KOi2[8], KOi3[8];
-static u16 KIi1[8], KIi2[8], KIi3[8];
-/*extern u16 KLi1[8], KLi2[8];
+static u16 KIi1[8], KIi2[8], KIi3[8];*/
+extern u16 KLi1[8], KLi2[8];
 extern u16 KOi1[8], KOi2[8], KOi3[8];
-extern u16 KIi1[8], KIi2[8], KIi3[8];*/
+extern u16 KIi1[8], KIi2[8], KIi3[8];
 /*---------------------------------------------------------------------
  * FI()
  * The FI function (fig 3). It includes the S7 and S9 tables.
@@ -187,8 +177,6 @@ void KeySchedule(u16 *key )
         0x0123,0x4567,0x89AB,0xCDEF, 0xFEDC,0xBA98,0x7654,0x3210 };
     u16 Kprime[8];
     int n;
-    /* Start by ensuring the subkeys are endian correct on a 16-bit basis */
-
     /* Now build the K'[] keys */
     for( n=0; n<8; ++n )
         Kprime[n] = (u16)(key[n] ^ C[n]);
@@ -205,6 +193,3 @@ void KeySchedule(u16 *key )
         KIi3[n] = Kprime[(n+7)&0x7];
     }
 }
-/*---------------------------------------------------------------------
- * e n d o f k a s u m i . c
- *---------------------------------------------------------------------*/
